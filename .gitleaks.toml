@@ -1,0 +1,15 @@
+# Secret scanning for pai. Run: gitleaks detect -c .gitleaks.toml
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Placeholders and test fixtures"
+regexes = [
+  # The USDC mint address on Solana mainnet: a public address, not a secret.
+  '''EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v''',
+  '''sk-phantom-\.\.\.''',
+  # Test fixtures, never valid keys.
+  '''sk-phantom-child-1''',
+  # The sample Keychain pointer in docs/guides/saved-secrets.md.
+  '''3f9c0a1b2c3d4e5f60718293''',
+]

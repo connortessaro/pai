@@ -1,0 +1,83 @@
+{
+  "name": "@connortessaro/pai",
+  "version": "0.5.0",
+  "description": "Keys, money and subagents for AI agents: Phantom AI keys and child keys, budgets and plans, model routing, an agent wallet, and signed receipts. CLI, MCP server, and a skill for pi, Claude Code, Codex and Cursor.",
+  "keywords": [
+    "phantom",
+    "api-key",
+    "agent",
+    "llm",
+    "inference",
+    "cli",
+    "mcp",
+    "pi-package",
+    "agent-skill",
+    "claude-code",
+    "codex",
+    "cursor",
+    "model-context-protocol",
+    "ai-agents",
+    "solana",
+    "wallet",
+    "subagents"
+  ],
+  "homepage": "https://connortessaro.github.io/pai/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/connortessaro/pai.git"
+  },
+  "type": "module",
+  "bin": {
+    "pai": "bin.mjs",
+    "phantom-key": "bin.mjs"
+  },
+  "files": [
+    "bin.mjs",
+    "dist",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "@solana/kit": "^8.3.0",
+    "imapflow": "^2.0.6",
+    "mailparser": "^3.9.28",
+    "nodemailer": "^10.0.10",
+    "zod": "^4.5.4"
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "coverage": "vitest run --coverage",
+    "dev": "node src/pai.mts",
+    "docs": "node scripts/gen-docs.mjs",
+    "prepare": "npm run build",
+    "test": "vitest run",
+    "typecheck": "tsc -p . --noEmit",
+    "version": "node scripts/sync-version.mjs && git add src/pai.mts"
+  },
+  "pi": {
+    "skills": [
+      "./skills"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/connortessaro/pai/issues"
+  },
+  "license": "MIT",
+  "author": "Connor Tessaro",
+  "devDependencies": {
+    "@types/mailparser": "^3.4.6",
+    "@types/node": "^24.0.0",
+    "@vitest/coverage-v8": "^5.0.2",
+    "typedoc": "^0.28.20",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

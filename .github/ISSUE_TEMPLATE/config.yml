@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/connortessaro/pai/security/advisories/new
+    about: Report it privately. Don't open a public issue.
+  - name: Phantom AI API docs
+    url: https://phantom.codes/docs
+    about: How the hosted API, keys and billing work.

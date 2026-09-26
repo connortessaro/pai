@@ -1,0 +1,10 @@
+/* Keep names such as --stick-by-prompt on one line in table cells, and let a
+   wide table scroll inside the content column instead of spilling over. */
+.col-content table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+td code {
+  white-space: nowrap;
+}

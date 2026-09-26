@@ -1,0 +1,25 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": [
+    "src/pai.mts"
+  ],
+  "tsconfig": "tsconfig.json",
+  "out": "docs/site",
+  "name": "pai",
+  "readme": "docs/index.md",
+  "projectDocuments": [
+    "docs/guides/*.md",
+    "docs/reference.md"
+  ],
+  "excludePrivate": true,
+  "treatWarningsAsErrors": true,
+  "validation": {
+    "notExported": true,
+    "invalidLink": true,
+    "invalidPath": true,
+    "rewrittenLink": true,
+    "notDocumented": true,
+    "unusedMergeModuleWith": true
+  },
+  "customCss": "docs/site.css"
+}

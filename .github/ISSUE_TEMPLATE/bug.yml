@@ -1,0 +1,49 @@
+name: Bug report
+description: Something in pai doesn't work
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Never paste an API key (`sk-phantom-...`), a wallet secret key, or the contents of `~/.config/phantom-key/`. Replace them with `...`.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Include the command or MCP tool call and the full error.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+  - type: dropdown
+    id: surface
+    attributes:
+      label: How were you running it?
+      options:
+        - CLI
+        - MCP server (pai mcp)
+        - An agent using the skill
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: pai version
+      description: "`npm ls -g @connortessaro/pai`, or the commit if you run from source"
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Node version and OS
+      placeholder: Node 24.1.0, macOS 15
+    validations:
+      required: true

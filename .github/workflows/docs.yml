@@ -1,0 +1,55 @@
+name: Docs
+
+# Builds the docs site on every push to main and publishes it to GitHub Pages:
+# the code reference (TypeDoc over src/pai.mts), the guides in docs/guides,
+# and the interface reference in docs/reference.md. `npm run docs` builds the
+# same site locally into docs/site.
+#
+# Pages must be set to deploy from GitHub Actions (Settings > Pages > Source).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# One deploy at a time. A newer push waits for the running deploy rather than
+# cancelling it halfway.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      # Fails if the committed docs/reference.md is stale, a guide links to
+      # something gone, or an export has no doc comment.
+      - run: node scripts/gen-docs.mjs --check
+      - run: npm run docs
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: docs/site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

@@ -1,0 +1,23 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      # vitest and its coverage plugin must share a version, or npm ci fails.
+      vitest:
+        patterns: [vitest, '@vitest/*']
+      minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      # Types for the oldest Node that pai supports (engines: >=24).
+      - dependency-name: '@types/node'
+        update-types: [version-update:semver-major]
+      # TypeDoc 0.28 supports TypeScript up to 6.0.
+      - dependency-name: typescript
+        versions: ['>=7']
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
